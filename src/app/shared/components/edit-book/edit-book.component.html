@@ -1,0 +1,49 @@
+<div class="add-book">
+  <h1>Add new book</h1>
+  <form [formGroup]="bookForm">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Author</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="author" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Language</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="language" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Pages</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="pages" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Genre</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="genre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        formControlName="description"
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="modal-actions">
+      <button mat-raised-button [mat-dialog-close]="true">Cancel</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="editBook()"
+        [disabled]="!bookForm.valid"
+      >
+        Edit
+      </button>
+    </div>
+  </form>
+</div>

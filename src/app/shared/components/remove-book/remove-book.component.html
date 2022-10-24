@@ -1,0 +1,8 @@
+<div mat-dialog-title>Delete a book</div>
+<div mat-dialog-content>Are you sure to delete {{ data.title }}</div>
+<div mat-dialog-actions class="delete-actions">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="deleteBook()">
+    Delete
+  </button>
+</div>

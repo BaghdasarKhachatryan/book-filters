@@ -1,0 +1,14 @@
+.add-book {
+  max-height: 75vh;
+  width: 500px;
+
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -1,0 +1,18 @@
+.books-container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  .mat-card {
+    width: 100%;
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+}

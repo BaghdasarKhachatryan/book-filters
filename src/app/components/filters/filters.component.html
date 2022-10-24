@@ -1,0 +1,46 @@
+<div class="filters">
+  <form [formGroup]="filtersForm" class="filters">
+    <div class="filters__row">
+      <mat-form-field>
+        <mat-label>Search by title</mat-label>
+        <input matInput formControlName="title" type="text" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Search by description</mat-label>
+        <input matInput formControlName="description" type="text" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Search by author</mat-label>
+        <mat-select formControlName="author">
+          <mat-option value=""></mat-option>
+          <mat-option
+            *ngFor="let author of authors"
+            [value]="author | lowercase"
+            >{{ author }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="filters__row">
+      <mat-form-field>
+        <mat-label>Search by language</mat-label>
+        <mat-select formControlName="language">
+          <mat-option value=""></mat-option>
+          <mat-option
+            *ngFor="let language of languages"
+            [value]="language | lowercase"
+            >{{ language }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Min pages count</mat-label>
+        <input matInput type="text" formControlName="pagesMinCount" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Max pages count</mat-label>
+        <input matInput type="text" formControlName="pagesMaxCount" />
+      </mat-form-field>
+    </div>
+  </form>
+</div>

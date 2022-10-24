@@ -1,0 +1,17 @@
+<h1>Books list</h1>
+<div class="books-container">
+  <mat-card *ngFor="let book of books | filter: filteredValue">
+    <mat-card-title>{{ book.title }}</mat-card-title>
+    <mat-card-content>
+      <h3><strong>Author</strong>:{{ book.author }}</h3>
+      <p><strong>Language:</strong> {{ book.language }}</p>
+      <p>{{ book.description }}</p>
+      <p>Pages count:{{ book.pages }}</p>
+      <span>Genre: {{ book.genre }}</span>
+    </mat-card-content>
+    <mat-card-actions align="end" class="card-actions">
+      <app-trash (click)="removeBook(book)"></app-trash>
+      <app-edit (click)="editBook(book)"></app-edit>
+    </mat-card-actions>
+  </mat-card>
+</div>
