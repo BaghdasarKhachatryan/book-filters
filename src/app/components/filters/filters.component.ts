@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Book, FilteredBook } from 'src/app/shared/book.model';
 import { BooksApiService } from 'src/app/shared/services/booksApi.service';
 
@@ -9,19 +10,39 @@ import { BooksApiService } from 'src/app/shared/services/booksApi.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
   filtersForm!: FormGroup;
   authors!: string[];
   languages!: string[];
 
+  destroy$: Subject<boolean> = new Subject();
+
   constructor(private fb: FormBuilder, private booksAPI: BooksApiService) {}
 
   ngOnInit(): void {
-    this.booksAPI.books.subscribe((booksResponse: Book[]) => {
-      this.authors = booksResponse.map((item) => item.author);
-      const allLanguages = booksResponse.map((item) => item.language);
-      this.languages = Array.from(new Set(allLanguages));
-    });
+    this.initForm();
+
+    this.booksAPI.books
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((booksResponse: Book[]) => {
+        this.authors = booksResponse.map((item) => item.author);
+        const allLanguages = booksResponse.map((item) => item.language);
+        this.languages = Array.from(new Set(allLanguages));
+      });
+
+    this.filtersForm.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((data: FilteredBook) => {
+        this.booksAPI.filteredValue$.next(data);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  private initForm(): void {
     this.filtersForm = this.fb.group({
       title: [''],
       description: [''],
@@ -30,11 +51,5 @@ export class FiltersComponent implements OnInit {
       pagesMinCount: [''],
       pagesMaxCount: [''],
     });
-    this.filtersForm.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((data: FilteredBook) => {
-        data;
-        this.booksAPI.filteredValue$.next(data);
-      });
   }
 }

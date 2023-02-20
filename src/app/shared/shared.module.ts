@@ -15,9 +15,13 @@ import { MaterialModule } from './material.module';
   ],
   imports: [MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
+    // Modules
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+
+    // Components
     TrashComponent,
     EditComponent,
   ],

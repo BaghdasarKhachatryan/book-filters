@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, startWith } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Book, FilteredBook } from '../book.model';
 
@@ -8,7 +8,7 @@ import { Book, FilteredBook } from '../book.model';
   providedIn: 'root',
 })
 export class BooksApiService {
-  defaultFilteredValue: FilteredBook = {
+  private defaultFilteredValue: FilteredBook = {
     title: '',
     author: '',
     language: '',
@@ -26,7 +26,9 @@ export class BooksApiService {
   constructor(private httpClient: HttpClient) {}
 
   get filteredValue() {
-    return this.filteredValue$.asObservable();
+    return this.filteredValue$
+      .asObservable()
+      .pipe(startWith(this.defaultFilteredValue));
   }
 
   get addedBook() {

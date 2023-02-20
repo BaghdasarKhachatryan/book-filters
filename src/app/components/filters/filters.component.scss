@@ -1,9 +1,4 @@
-// .filters {
-//   display: flex;
-//   justify-content: space-between;
-//   width: 600px;
-//   margin: auto;
-// }
+@import "responsive";
 
 .filters {
   display: flex;
@@ -13,6 +8,9 @@
   &__row {
     display: flex;
     justify-content: space-between;
-    // gap: 10px;
+
+    @include tabletMobile {
+      flex-direction: column;
+    }
   }
 }

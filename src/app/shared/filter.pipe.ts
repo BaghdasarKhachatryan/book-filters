@@ -5,22 +5,26 @@ import { Book, FilteredBook } from './book.model';
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(books: Book[], value: FilteredBook): Book[] {
+  transform(
+    books: Book[],
+    value: FilteredBook,
+    maxPagesCount?: number,
+    minPagesCount?: number
+  ): Book[] {
     if (
-      !value.title.trim() &&
-      !value.author.trim() &&
-      !value.language.trim() &&
-      !value.description.trim() &&
-      !value.pagesMinCount.trim() &&
-      !value.pagesMaxCount.trim()
+      !value?.title.trim() &&
+      !value?.author.trim() &&
+      !value?.language.trim() &&
+      !value?.description.trim() &&
+      !value?.pagesMinCount.trim() &&
+      !value?.pagesMaxCount.trim()
     ) {
       return books;
     } else {
       return books
-        .filter((book) => {
-          return book.title.toLowerCase().includes(value.title.toLowerCase());
+        ?.filter((book) => {
+          return book?.title.toLowerCase().includes(value.title.toLowerCase());
         })
-
         .filter((item) => {
           return item.description
             .toLowerCase()
@@ -37,6 +41,10 @@ export class FilterPipe implements PipeTransform {
         .filter((item) => {
           if (!value.pagesMinCount && !value.pagesMaxCount) {
             return true;
+          } else if (value.pagesMinCount && !value.pagesMaxCount) {
+            return item.pages >= +value.pagesMinCount;
+          } else if (!value.pagesMinCount && value.pagesMaxCount) {
+            return item.pages <= +value.pagesMaxCount;
           } else {
             return (
               item.pages >= +value.pagesMinCount &&
