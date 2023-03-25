@@ -1,10 +1,6 @@
 <h1>Books list</h1>
 <div class="books-container">
-  <mat-card
-    *ngFor="
-      let book of books | filter : filteredValue : maxPagesCount : minPagesCount
-    "
-  >
+  <mat-card *ngFor="let book of books | filter : filteredValue">
     <mat-card-title>{{ book.title }}</mat-card-title>
     <mat-card-content>
       <h3><strong>Author</strong>:{{ book.author }}</h3>

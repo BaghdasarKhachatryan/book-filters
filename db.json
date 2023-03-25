@@ -10,15 +10,6 @@
       "description": "JavaScript lies at the heart of almost every modern web application, from social apps like Twitter to browser-based game frameworks like Phaser and Babylon. Though simple for beginners to pick up and play with, JavaScript is a flexible, complex language that you can use to build full-scale applications."
     },
     {
-      "id": 2,
-      "title": "Practical Modern JavaScript",
-      "author": "Nicolás Bevacqua",
-      "language": "French",
-      "pages": 334,
-      "genre": "Web Development",
-      "description": "To get the most out of modern JavaScript, you need learn the latest features of its parent specification, ECMAScript 6 (ES6). This book provides a highly practical look at ES6, without getting lost in the specification or its implementation details."
-    },
-    {
       "id": 3,
       "title": "Understanding ECMAScript 6",
       "author": "Nicholas C. Zakas",

@@ -8,7 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-book.component.scss'],
 })
 export class AddBookComponent implements OnInit {
-  bookForm!: FormGroup;
+  public bookForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<AddBookComponent>
@@ -25,7 +25,7 @@ export class AddBookComponent implements OnInit {
     });
   }
 
-  addNewBook() {
+  public addNewBook() {
     this.matDialogRef.close(this.bookForm.value);
   }
 }

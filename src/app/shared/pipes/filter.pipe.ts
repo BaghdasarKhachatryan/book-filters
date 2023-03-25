@@ -1,16 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Book, FilteredBook } from './book.model';
+import { Book, FilteredBook } from '../book.model';
 
 @Pipe({
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(
-    books: Book[],
-    value: FilteredBook,
-    maxPagesCount?: number,
-    minPagesCount?: number
-  ): Book[] {
+  transform(books: Book[], value: FilteredBook): Book[] {
     if (
       !value?.title.trim() &&
       !value?.author.trim() &&

@@ -5,14 +5,7 @@ import { Book, FilteredBook } from 'src/app/shared/book.model';
 import { EditBookComponent } from 'src/app/shared/components/edit-book/edit-book.component';
 import { RemoveBookComponent } from 'src/app/shared/components/remove-book/remove-book.component';
 import { AddBookComponent } from '../../shared/components/add-book/add-book.component';
-import {
-  combineLatest,
-  debounceTime,
-  forkJoin,
-  Observable,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { combineLatest, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-books-list',
@@ -20,12 +13,10 @@ import {
   styleUrls: ['./books-list.component.scss'],
 })
 export class BooksListComponent implements OnInit, OnDestroy {
-  books!: Book[];
-  filteredValue!: FilteredBook;
-  maxPagesCount!: number;
-  minPagesCount!: number;
+  public books!: Book[];
+  public filteredValue!: FilteredBook;
 
-  destroy$: Subject<boolean> = new Subject();
+  private destroy$: Subject<boolean> = new Subject();
 
   constructor(private dialog: MatDialog, public booksAPI: BooksApiService) {}
 
@@ -48,10 +39,6 @@ export class BooksListComponent implements OnInit, OnDestroy {
           this.books.push(addedBook);
         }
         this.books = booksResponse;
-
-        let booksPages = this.books.map((book: Book) => book.pages);
-        this.maxPagesCount = Math.max(...booksPages);
-        this.minPagesCount = Math.min(...booksPages);
         this.booksAPI.books$.next(booksResponse);
       });
   }
@@ -61,7 +48,7 @@ export class BooksListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  openDialog() {
+  public openDialog() {
     const dialogRef = this.dialog.open(AddBookComponent, {
       autoFocus: false,
       hasBackdrop: false,
@@ -74,7 +61,8 @@ export class BooksListComponent implements OnInit, OnDestroy {
       });
     });
   }
-  editBook(book: Book) {
+
+  public editBook(book: Book) {
     const editBookDialogRef = this.dialog.open(EditBookComponent, {
       data: { book },
     });
@@ -85,7 +73,8 @@ export class BooksListComponent implements OnInit, OnDestroy {
       this.books[updatedBookIndex] = book;
     });
   }
-  removeBook(book: Book) {
+
+  public removeBook(book: Book) {
     const removebookDialogRef = this.dialog.open(RemoveBookComponent, {
       data: { ...book },
     });

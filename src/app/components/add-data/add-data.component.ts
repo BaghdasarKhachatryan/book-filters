@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { filter, Subject, takeUntil, tap } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 import { Book } from 'src/app/shared/book.model';
 import { BooksApiService } from 'src/app/shared/services/booksApi.service';
 import { AddBookComponent } from '../../shared/components/add-book/add-book.component';

@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FiltersComponent } from './components/filters/filters.component';
 import { AddBookComponent } from './shared/components/add-book/add-book.component';
 import { BooksListComponent } from './components/books-list/books-list.component';
-import { FilterPipe } from './shared/filter.pipe';
 import { AddDataComponent } from './components/add-data/add-data.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,7 +16,6 @@ import { SharedModule } from './shared/shared.module';
     FiltersComponent,
     AddBookComponent,
     BooksListComponent,
-    FilterPipe,
     AddDataComponent,
   ],
   imports: [
