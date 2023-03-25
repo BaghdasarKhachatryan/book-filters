@@ -10,7 +10,7 @@ import { Book } from '../../book.model';
   styleUrls: ['./edit-book.component.scss'],
 })
 export class EditBookComponent implements OnInit {
-  bookForm!: FormGroup;
+  public bookForm!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<EditBookComponent>,
@@ -31,10 +31,11 @@ export class EditBookComponent implements OnInit {
     });
   }
 
-  addNewBook() {
+  public addNewBook() {
     this.matDialogRef.close(this.bookForm.value);
   }
-  editBook() {
+
+  public editBook() {
     const updatedBook = {
       id: this.data.book.id,
       ...this.bookForm.getRawValue(),

@@ -5,6 +5,7 @@ import { RemoveBookComponent } from './components/remove-book/remove-book.compon
 import { EditComponent } from './icons/edit/edit.component';
 import { TrashComponent } from './icons/trash/trash.component';
 import { MaterialModule } from './material.module';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { MaterialModule } from './material.module';
     RemoveBookComponent,
     TrashComponent,
     EditComponent,
+    FilterPipe,
   ],
   imports: [MaterialModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -24,6 +26,9 @@ import { MaterialModule } from './material.module';
     // Components
     TrashComponent,
     EditComponent,
+
+    // Pipes
+    FilterPipe,
   ],
 })
 export class SharedModule {}

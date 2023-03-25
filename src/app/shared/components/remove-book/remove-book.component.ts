@@ -14,7 +14,7 @@ export class RemoveBookComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  deleteBook() {
+  public deleteBook() {
     this.matDialogRef.close(true);
   }
 }

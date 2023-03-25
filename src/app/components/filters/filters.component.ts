@@ -11,11 +11,11 @@ import { BooksApiService } from 'src/app/shared/services/booksApi.service';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit, OnDestroy {
-  filtersForm!: FormGroup;
-  authors!: string[];
-  languages!: string[];
+  public filtersForm!: FormGroup;
+  public authors!: string[];
+  public languages!: string[];
 
-  destroy$: Subject<boolean> = new Subject();
+  private destroy$: Subject<boolean> = new Subject();
 
   constructor(private fb: FormBuilder, private booksAPI: BooksApiService) {}
 

@@ -25,7 +25,7 @@ export class BooksApiService {
 
   constructor(private httpClient: HttpClient) {}
 
-  get filteredValue() {
+  public get filteredValue() {
     return this.filteredValue$
       .asObservable()
       .pipe(startWith(this.defaultFilteredValue));
@@ -39,19 +39,19 @@ export class BooksApiService {
     return this.books$.asObservable();
   }
 
-  getBooksList(): Observable<Book[]> {
+  public getBooksList(): Observable<Book[]> {
     return this.httpClient.get<Book[]>(`${environment.api_url}/books`);
   }
-  addNewBook(book: Book): Observable<Book> {
+  public addNewBook(book: Book): Observable<Book> {
     return this.httpClient.post<Book>(`${environment.api_url}/books`, book);
   }
-  updateBook(book: Book) {
+  public updateBook(book: Book) {
     return this.httpClient.put<Book>(
       `${environment.api_url}/books/${book.id}`,
       book
     );
   }
-  removeBook(book: Book) {
+  public removeBook(book: Book) {
     return this.httpClient.delete<Book>(
       `${environment.api_url}/books/${book.id}`
     );
